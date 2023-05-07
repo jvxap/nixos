@@ -21,6 +21,10 @@
       ranger
       polybar
       spotify
+      
+      # games
+      steam
+      minecraft
 
       # utils
       wget
@@ -28,13 +32,20 @@
       killall
       feh
       pavucontrol
-      gcc
+      coreutils
+      xclip
+      fd
+      wireguard-tools
+      ripgrep
 
       # editors
       neovim
+      emacs
 
       # languages
       rustup
+      ghc
+      clang
     ];
     variables = {
       EDITOR = "nvim";
@@ -44,6 +55,7 @@
 
       PATH = [
         "${XDG_BIN_HOME}"
+        "$HOME/.emacs.d/bin"
       ];
     };
   };
@@ -52,8 +64,8 @@
     zsh = {
       enable = true;
       ohMyZsh = {
-       enable = true;
-       theme = "Soliah";
+        enable = true;
+        theme = "Soliah";
       };
     };
   };
@@ -115,7 +127,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "tuxuila";
     networkmanager.enable = true;
   };
 
@@ -155,6 +167,8 @@
   };
   
   nixpkgs.config.allowUnfree = true;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
